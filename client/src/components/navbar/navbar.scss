@@ -134,7 +134,7 @@ nav {
       height: 100vh;
       width: 50%;
       transition: all 1s ease;
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -145,6 +145,9 @@ nav {
       }
 
       @include sm {
+        
+        display: flex;
+
         a {
           display: initial;
         }
