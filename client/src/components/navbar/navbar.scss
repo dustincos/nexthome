@@ -32,7 +32,7 @@ nav {
       gap: 10px;
 
       img {
-        width: 28px;
+        width: 36px;
       }
 
       span {
@@ -51,7 +51,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background-color: #D6EFD8;
+    // background-color: #D6EFD8;
     height: 100%;
 
     @include md {
@@ -63,33 +63,30 @@ nav {
       margin: 20px;
     }
 
-    .user{
+    .user {
       display: flex;
       align-items: center;
       font-weight: bold;
-
-      img{
+      position: relative; /* Add this for positioning the dropdown */
+    
+      img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
         margin-right: 20px;
+        cursor: pointer; /* Add cursor pointer for better UX */
       }
-
-      span{
-        @include sm{
+    
+      span {
+        @include sm {
           display: none;
         }
       }
-
-      .profile{
-        padding: 12px 24px;
-        background-color: #fece51;
-        cursor: pointer;
-        border: none;
-        position: relative;
+    
+      .profile {
         
-        .notification{
+        .notification {
           position: absolute;
           top: -8px;
           right: -8px;
@@ -102,8 +99,35 @@ nav {
           align-items: center;
           justify-content: center;
         }
-
       }
+    
+      .dropdown {
+        display: none; /* Initially hide the dropdown */
+        position: absolute;
+        top: 100%; /* Position it below the user div */
+        left: 0;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        z-index: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add some shadow for better visibility */
+      }
+    
+      &:hover .dropdown,
+      .dropdown.visible {
+        display: block; /* Show the dropdown on hover or when visible class is added */
+      }
+    }
+    
+    .logout {
+      padding: 12px 24px;
+      background-color: #fece51;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      text-align: left;
+      margin-top: 5px;
     }
 
     .register {
@@ -145,7 +169,7 @@ nav {
       }
 
       @include sm {
-        
+
         display: flex;
 
         a {

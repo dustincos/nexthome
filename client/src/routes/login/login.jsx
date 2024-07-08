@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
@@ -10,9 +10,15 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const {updateUser} = useContext(AuthContext)
-
+  const { currentUser, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to home if user is already logged in
+    if (currentUser) {
+      navigate('/');
+    }
+  }, [currentUser, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,15 +35,15 @@ function Login() {
         password,
       });
 
-      updateUser(res.data)
-
-      navigate("/");
+      updateUser(res.data);
+      navigate("/list");
     } catch (err) {
       setError(err.response.data.message);
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="login">
       <div className="formContainer">
@@ -50,12 +56,14 @@ function Login() {
             maxLength={20}
             type="text"
             placeholder="Username"
+            autoComplete="username"
           />
           <input
             name="password"
             type="password"
             required
             placeholder="Password"
+            autoComplete="current-password"
           />
           <button disabled={isLoading}>Login</button>
           {error && <span>{error}</span>}

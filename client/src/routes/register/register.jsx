@@ -1,17 +1,25 @@
 import "./register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { AuthContext } from '../../context/AuthContext';
+import { useState, useContext, useEffect } from "react";
 import apiRequest from "../../lib/apiRequest";
 
 
 
 function Register() {
-  
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to home if user is already logged in
+    if (currentUser) {
+      navigate('/');
+    }
+  }, [currentUser, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +45,7 @@ function Register() {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="registerPage">
       <div className="formContainer">
