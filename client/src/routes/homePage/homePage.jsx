@@ -34,7 +34,11 @@ function HomePage() {
         </div>
       </div>
       <div className="imgContainer">
-        <img src="/bg.png" alt="" />
+      <div class="value_orbe"></div>
+
+        <div class="value_img">
+        <img src="/home.jpg" alt="" />
+      </div>
       </div>
     </div>
   );

@@ -61,9 +61,10 @@
 
   .imgContainer {
     flex: 2;
-    background-color: #80AF81;
+    // background-color: #80AF81;
     position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
 
     @include md {
@@ -74,10 +75,28 @@
       width: 115%;
       position: absolute;
       right: 0;
+      border-radius: 238px 238px 12px 12px;
 
       @include lg {
         width: 105%;
       }
+    }
+
+    .value_orbe {
+      width: 501px;
+      height: 700px;
+      background-color: hsl(228, 24%, 97%);
+      border-radius: 258px 258px 16px 16px;
+    }
+
+    .value_img {
+      position: absolute;
+      width: 461px;
+      height: 641px;
+      border-radius: 238px 238px 12px 12px;
+      inset: 0;
+      margin: auto;
+      box-shadow: 0 16px 32px hsla(228, 66%, 25%, .25);
     }
   }
 }

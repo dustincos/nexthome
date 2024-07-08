@@ -1,1 +1,102 @@
 @import "../../responsive.scss";
+
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  // font-size: 30px;
+  // text-align: center;
+}
+
+.flex-item-left {
+  // background-color: #f1f1f1;
+  padding: 10px;
+  flex: 50%;
+}
+
+.flex-item-right {
+  // background-color: dodgerblue;
+  padding: 10px;
+  flex: 50%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.contact_images {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  @include sm{
+    display: none;
+    }
+}
+
+.contact_orbe {
+  width: 266px;
+  height: 316px;
+  background-color: hsl(228, 24%, 97%);
+  border-radius: 135px 135px 16px 16px;
+}
+
+.contact_img {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 125px 125px 12px 12px;
+  inset: 0;
+  margin: auto;
+  box-shadow: 0 16px 32px hsla(228, 66%, 25%, .25);
+}
+
+.contact_card {
+  display: grid;
+  padding-top: 10px;
+  gap: 1.25rem .75rem;
+  grid-template-columns: repeat(2, 1fr);
+  @include sm{
+  grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.contact_card_box {
+  background-color: var(--body-color);
+  border: 2px solid var(--border-color);
+  padding: 1.25rem .75rem;
+  border-radius: .5rem;
+  transition: .3s;
+}
+
+.contact_card_info {
+  display: flex;
+  align-items: flex-start;
+  column-gap: .75rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact_card_btn {
+  font-size: var(--small-font-size);
+  padding: 14px 0;
+  width: 100px;
+  border-radius: .25rem;
+  background-color: var(--first-color-lighten);
+  color: var(--first-color);
+  font-weight: var(--font-semi-bold);
+  box-shadow: none;
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .contact_card{
+    // grid-template-columns: repeat(2, 200px);
+  }
+
+}

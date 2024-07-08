@@ -12,6 +12,7 @@ function Filter() {
     maxPrice: searchParams.get("maxPrice") || "",
     bedroom: searchParams.get("bedroom") || "",
   });
+  const [searched, setSearched] = useState(false); // State to track if search has been performed
 
   const handleChange = (e) => {
     setQuery({
@@ -22,13 +23,16 @@ function Filter() {
 
   const handleFilter = () => {
     setSearchParams(query);
+    setSearched(true); // Set searched to true after clicking the search button
   };
 
   return (
     <div className="filter">
-      <h1>
-        Search results for <b>{searchParams.get("city")}</b>
-      </h1>
+      {searched && (
+        <h1>
+          Search results for <b>{searchParams.get("city")}</b>
+        </h1>
+      )}
       <div className="top">
         <div className="item">
           <label htmlFor="city">Location</label>

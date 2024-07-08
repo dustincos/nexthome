@@ -36,9 +36,9 @@ nav {
       }
 
       span {
-        @include md {
-          display: none;
-        }
+        // @include md {
+        //   display: none;
+        // }
 
         @include sm {
           display: initial;
