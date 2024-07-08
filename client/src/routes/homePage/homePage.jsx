@@ -4,8 +4,7 @@ import "./homePage.scss";
 import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
-
-  const {currentUser} = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="homePage">
@@ -13,8 +12,8 @@ function HomePage() {
         <div className="wrapper">
           <h1 className="title">Find Your<br />Perfect Room Easily</h1>
           <p>
-          Discover a wide range of listings tailored for you.<br />
-          Enjoy a hassle-free search experience with all the amenities you need.
+            Discover a wide range of listings tailored for you.<br />
+            Enjoy a hassle-free search experience with all the amenities you need.
           </p>
           <SearchBar />
           <div className="boxes">
@@ -34,11 +33,10 @@ function HomePage() {
         </div>
       </div>
       <div className="imgContainer">
-      <div class="value_orbe"></div>
-
-        <div class="value_img">
-        <img src="/home.jpg" alt="" />
-      </div>
+        <div className="value_orbe"></div>
+        <div className="value_img">
+          <img src="/home.jpg" alt="" />
+        </div>
       </div>
     </div>
   );
