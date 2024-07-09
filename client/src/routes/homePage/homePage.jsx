@@ -10,7 +10,7 @@ function HomePage() {
     <div className="homePage">
       <div className="textContainer">
         <div className="wrapper">
-          <h1 className="title">Find Your<br />Perfect Room Easily</h1>
+          <h1 className="title">Find Your<br />Perfect Home Easily</h1>
           <p>
             Discover a wide range of listings tailored for you.<br />
             Enjoy a hassle-free search experience with all the amenities you need.
