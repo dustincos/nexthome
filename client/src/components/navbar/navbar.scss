@@ -1,4 +1,12 @@
 @import "../../responsive.scss";
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
 
 nav {
   height: 100px;
@@ -45,9 +53,14 @@ nav {
         }
       }
     }
+    a:not(:first-child){
+      @include md{
+        display: none;
+      }
+    }
   }
   .right {
-    flex: 2;
+    // flex: 2;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -70,8 +83,8 @@ nav {
       position: relative; /* Add this for positioning the dropdown */
     
       img {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         object-fit: cover;
         margin-right: 20px;
@@ -137,15 +150,46 @@ nav {
     .menuIcon {
       display: none;
       z-index: 999;
-
-      img {
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-      }
-
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+    
       @include sm {
         display: inline;
+      }
+
+      @include md {
+        display: inline;
+      }
+    
+      .bar {
+        width: 100%;
+        height: 5px;
+        background-color: black;
+        margin: 6px 0;
+        transition: 0.4s;
+      }
+    
+      &.change .bar {
+        background-color: white; // Change to white
+      }
+    
+      &.change .bar1 {
+        transform: rotate(-45deg) translate(-9px, 6px);
+      }
+    
+      &.change .bar2 {
+        opacity: 0;
+      }
+    
+      &.change .bar3 {
+        transform: rotate(45deg) translate(-8px, -8px);
+      }
+    }
+    
+    .ls-md{
+      @include md {
+        display: none;
       }
     }
 
@@ -157,7 +201,7 @@ nav {
       color: white;
       height: 100vh;
       width: 50%;
-      transition: all 1s ease;
+      transition: all 0.5s ease;
       display: none;
       flex-direction: column;
       align-items: center;
@@ -169,6 +213,15 @@ nav {
       }
 
       @include sm {
+
+        display: flex;
+
+        a {
+          display: initial;
+        }
+      }
+
+      @include md {
 
         display: flex;
 

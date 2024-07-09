@@ -15,7 +15,7 @@ function Card({ item }) {
           <img src="/pin.png" alt="" />
           <span>{item.address}</span>
         </p>
-        <p className="price">₹ {item.price}</p>
+        <p className="price">₹ {item.price}/- per month</p>
         <div className="bottom">
           <div className="features">
             <div className="feature">
@@ -26,6 +26,10 @@ function Card({ item }) {
               <img src="/bath.png" alt="" />
               <span>{item.bathroom} bathroom</span>
             </div>
+            <div className="feature">
+              <img src="/kitchen.png" alt="" />
+              <span>{item.kitchen} kitchen</span>
+            </div>
           </div>
           <div className="icons">
             <div className="icon">
@@ -33,6 +37,10 @@ function Card({ item }) {
             </div>
             <div className="icon">
               <img src="/chat.png" alt="" />
+            </div>
+            <div className="icon">
+              <img src="/close.png" alt="" />
+              <Link to={`/${item.id}/delete`}></Link>
             </div>
           </div>
         </div>

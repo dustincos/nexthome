@@ -36,6 +36,7 @@ function App() {
         { path: "/profile", element: <ProfilePage />, loader: profilePageLoader },
         { path: "/profile/update", element: <ProfileUpdatePage /> },
         { path: "/add", element: <NewPostPage /> },
+        { path: "/delete", element: <NewPostPage /> },
       ],
     },
   ]);

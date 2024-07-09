@@ -1,40 +1,54 @@
 @import "../../responsive.scss";
 
-.profilePage {
-  display: flex;
-  height: 100%;
+// body, html {
+//   height: 100%;
+//   overflow-y: auto;
+// }
 
-  @include md{
+.profilePage {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  min-height: 100%; /* Ensure the profilePage takes at least 100% height of the viewport */
+
+  @include md {
     flex-direction: column;
-    overflow: scroll;
+
+    .details {
+      overflow-y: auto; /* Use auto to show scroll only when necessary */
+      padding-bottom: 50px;
+      flex: none;
+      height: max-content;
+    }
+
+    .chatContainer {
+      background-color: #fcf5f3;
+      flex: none;
+      height: max-content;
+    }
   }
 
   .details {
     flex: 3;
-    overflow-y: scroll;
+    overflow-y: auto; /* Use auto to show scroll only when necessary */
     padding-bottom: 50px;
 
-    @include md{
-      flex:none;
-      height: max-content;
-    }
-
-    .wrapper{
+    .wrapper {
       padding-right: 50px;
       display: flex;
       flex-direction: column;
       gap: 50px;
 
-      .title{
+      .title {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        h1{
+        h1 {
           font-weight: 300;
         }
 
-        button{
+        button {
           padding: 12px 24px;
           background-color: #fece51;
           cursor: pointer;
@@ -42,28 +56,28 @@
         }
       }
 
-      .info{
+      .info {
         display: flex;
         flex-direction: column;
         gap: 20px;
 
-        span{
+        span {
           display: flex;
           align-items: center;
           gap: 20px;
         }
 
-        button{
+        button {
           width: 100px;
-          background-color: teal;
+          background-color: #e37e7e;
           border: none;
           color: white;
           padding: 10px 20px;
           cursor: pointer;
-          border-radius: 5px;
+          border-radius: 4px;
         }
 
-        img{
+        img {
           width: 40px;
           height: 40px;
           border-radius: 50%;
@@ -72,17 +86,13 @@
       }
     }
   }
+
   .chatContainer {
     flex: 2;
     background-color: #fcf5f3;
     height: 100%;
 
-    @include md{
-      flex:none;
-      height: max-content;
-    }
-
-    .wrapper{
+    .wrapper {
       padding: 0px 20px;
       height: 100%;
     }

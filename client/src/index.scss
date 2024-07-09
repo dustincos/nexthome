@@ -68,7 +68,9 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
-  transition: .3s; /* For animation dark mode */
+  transition: .3s;
+  height: 100%;
+  overflow-y: auto; /* For animation dark mode */
 }
 
 h1, h2, h3 {

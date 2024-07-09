@@ -70,9 +70,9 @@ function Login() {
           <Link to="/register">{"Don't"} you have an account?</Link>
         </form>
       </div>
-      <div className="imgContainer">
+      {/* <div className="imgContainer">
         <img src="/value.jpg" alt="" />
-      </div>
+      </div> */}
     </div>
   );
 }

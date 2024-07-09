@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { useNotificationStore } from "../../lib/notificationStore";
@@ -8,10 +8,10 @@ import { useNotificationStore } from "../../lib/notificationStore";
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  
   const { updateUser, currentUser } = useContext(AuthContext);
   const fetch = useNotificationStore((state) => state.fetch);
   const number = useNotificationStore((state) => state.number);
+  const navigate = useNavigate();
 
   if (currentUser) fetch();
 
@@ -31,6 +31,10 @@ function Navbar() {
 
   const hideDropdown = () => {
     setDropdownVisible(false);
+  };
+
+  const handleMenuIconClick = () => {
+    setOpen((prev) => !prev);
   };
 
   return (
@@ -72,12 +76,10 @@ function Navbar() {
             </a>
           </>
         )}
-        <div className="menuIcon">
-          <img
-            src="/menu.png"
-            alt="Menu"
-            onClick={() => setOpen((prev) => !prev)}
-          />
+        <div className={`menuIcon ${open ? 'change' : ''}`} onClick={handleMenuIconClick}>
+          <div className="bar bar1"></div>
+          <div className="bar bar2"></div>
+          <div className="bar bar3"></div>
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
@@ -88,12 +90,12 @@ function Navbar() {
             <div>
             </div>
           ) : (
-            <>
+            <div className="ls-md">
               <a href="/login">Sign in</a>
               <a href="/register" className="register">
                 Sign up
               </a>
-            </>
+            </div>
           )}
         </div>
       </div>

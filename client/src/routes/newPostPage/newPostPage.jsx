@@ -27,6 +27,7 @@ function NewPostPage() {
           city: inputs.city,
           bedroom: parseInt(inputs.bedroom),
           bathroom: parseInt(inputs.bathroom),
+          kitchen: parseInt(inputs.kitchen),
           type: inputs.type,
           property: inputs.property,
           latitude: inputs.latitude,
@@ -84,6 +85,10 @@ function NewPostPage() {
             <div className="item">
               <label htmlFor="bathroom">Bathroom Number</label>
               <input min={1} id="bathroom" name="bathroom" type="number" />
+            </div>
+            <div className="item">
+              <label htmlFor="kitchen">Kitchen Number</label>
+              <input min={1} id="kitchen" name="kitchen" type="number" />
             </div>
             <div className="item">
               <label htmlFor="latitude">Latitude</label>

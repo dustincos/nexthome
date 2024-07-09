@@ -61,8 +61,8 @@
     }
 
     .bottom {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      // justify-content: space-between;
       gap: 10px;
 
       .features {

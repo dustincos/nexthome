@@ -104,6 +104,10 @@ function SinglePage() {
               <img src="/bath.png" alt="" />
               <span>{post.bathroom} bathroom</span>
             </div>
+            <div className="size">
+              <img src="/kitchen.png" alt="" />
+              <span>{post.kitchen} kitchen</span>
+            </div>
           </div>
           <p className="title">Nearby Places</p>
           <div className="listHorizontal">
@@ -129,7 +133,7 @@ function SinglePage() {
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
-                <span>Restaurant</span>
+                <span>Market</span>
                 <p>{post.postDetail.restaurant}m away</p>
               </div>
             </div>
