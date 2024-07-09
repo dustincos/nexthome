@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
+import "./footer.scss";
 
 function Footer() {
   return (
-    <footer>
       <div className="footerContainer">
         <div className="socialIcons">
           <a href="#"><i className='bx bxl-facebook'></i></a>
@@ -23,7 +23,6 @@ function Footer() {
           <p>Copyright &copy;2023 Designed by <span className="designer">CS2 Designs</span></p>
         </div>
       </div>
-    </footer>
   );
 }
 

@@ -16,7 +16,7 @@
       height: 100%;
 
       @include lg{
-        padding-right: 50px;
+        padding-right: 30px;
       }
 
       @include md{
@@ -83,16 +83,16 @@
     }
 
     .value_orbe {
-      width: 501px;
-      height: 700px;
+      width: 480px;
+      height: 650px;
       background-color: hsl(228, 24%, 97%);
       border-radius: 258px 258px 16px 16px;
     }
 
     .value_img {
       position: absolute;
-      width: 461px;
-      height: 641px;
+      width: 450px;
+      height: 620px;
       border-radius: 238px 238px 12px 12px;
       inset: 0;
       margin: auto;

@@ -26,7 +26,12 @@
   }
 
   .content {
+    padding: 10px;
     // flex: 1;
     height: calc(100vh - 100px);
+  }
+
+  .footer{
+    margin-top: 60px;
   }
 }

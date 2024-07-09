@@ -1,78 +1,91 @@
+@import "../../responsive.scss";
+
 footer {
   background-color: #222327;
-  color: white; /* Ensure text is visible */
+  color: white;
+  padding: 20px 0;
+}
 
-  .footerContainer {
-    width: 100%;
-    padding: 20px 0; /* Increase padding for better spacing */
+.footerContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #222327;
+  color: white;
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.socialIcons a {
+  text-decoration: none;
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #29fd53;
   }
 
-  .socialIcons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px; /* Add some space below social icons */
+  i {
+    font-size: 2em;
+    color: #29fd53;
+    opacity: 0.9;
   }
+}
 
-  .socialIcons a {
-    text-decoration: none;
-    padding: 10px;
-    margin: 0 10px; /* Reduce margin for better alignment */
-    border-radius: 50px;
-    transition: background-color 0.3s ease; /* Smooth transition */
+.footerNav {
+  margin: 30px 0;
+}
 
-    &:hover {
-      background-color: #29fd53; /* Change background on hover */
-    }
+.footerNav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.footerNav ul li a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.7;
+  font-size: 1.1rem;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
   }
+}
 
-  .footerNav {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px; /* Add space below navigation links */
-  }
+.footer-info {
+  width: 100%;
+  background-color: #000;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
 
-  .footerNav ul {
-    list-style-type: none;
-    display: flex;
-    gap: 20px; /* Add gap between navigation links */
-  }
+.footer-info p {
+  font-size: 0.75rem;
+  color: white;
+}
 
-  .footerNav ul li a {
-    color: #fff;
-    text-decoration: none;
-    opacity: 0.7;
-    font-size: 1.3rem;
-    transition: opacity 0.3s ease; /* Smooth transition */
+.designer {
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 0 5px;
+}
 
-    &:hover {
-      opacity: 1; /* Increase opacity on hover */
-    }
-  }
-
-  .footer-info {
-    background-color: #000;
-    padding: 20px;
+@media (max-width: 700px) {
+  .footerNav ul li {
+    width: 100px;
     text-align: center;
-    margin-top: 20px; /* Add space above footer info */
-  }
-
-  .footer-info p {
-    color: white;
-  }
-
-  .designer {
-    opacity: 0.7;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    margin: 0 5px; /* Adjust margin */
-  }
-
-  @media (max-width: 700px) {
-    .footerNav ul li {
-      width: 100px;
-      text-align: center;
-      margin: 10px;
-    }
+    margin: 10px;
   }
 }
