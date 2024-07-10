@@ -2,30 +2,60 @@
 
 .listPage {
   display: flex;
+  flex-direction: column;
   height: 100%;
 
   .listContainer {
-    flex: 3;
+    padding: 10px;
+    flex: 1;
     height: 100%;
     overflow-y: auto;
+    padding-right: 20px; /* Add padding here */
 
-    .wrapper{
-      height: 100%;
-      padding-right: 50px;
+    /* Hide scrollbar */
+    &::-webkit-scrollbar {
+      width: 0; /* Hide the scrollbar */
+      height: 0;
+    }
+
+    /* Show scrollbar when scrolling */
+    &:hover::-webkit-scrollbar {
+      width: 12px; /* Adjust width of scrollbar */
+      height: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Background of the scrollbar track */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #888; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners of the scrollbar thumb */
+      border: 3px solid #f1f1f1; /* Adds space around the thumb */
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Color on hover */
+    }
+
+    .wrapper {
+      height: fit-content; /* Adjust height as needed */
       display: flex;
       flex-direction: column;
       gap: 50px;
       padding-bottom: 50px;
     }
   }
-  .mapContainer {
-    flex: 2;
-    margin-top: 50px;
-    height: 80%;
-    background-color: #fcf5f3;
 
-    @include md{
-      display: none;
-    }
+  .filterContainer {
+    // flex: 0 0 300px; /* Fixed width for filter */
+    // background-color: #f1f1f1; /* Example background color */
+    padding: 10px;
+    overflow-y: auto; /* Enable scrollbar if needed */
+    /* Adjust styling for the filter container */
+  }
+
+  .lis_font{
+    padding: 10px;
   }
 }
