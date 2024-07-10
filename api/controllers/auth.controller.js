@@ -7,10 +7,7 @@ export const register = async (req, res) => {
 
   try {
     // HASH THE PASSWORD
-
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    console.log(hashedPassword);
 
     // CREATE A NEW USER AND SAVE TO DB
     const newUser = await prisma.user.create({
@@ -21,11 +18,18 @@ export const register = async (req, res) => {
       },
     });
 
-    console.log(newUser);
-
     res.status(201).json({ message: "User created successfully" });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
+
+    if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
+      return res.status(500).json({ message: "Email already exists. Please use a different email." });
+    }
+
+    if (error.code === 'P2002' && error.meta?.target?.includes('username')) {
+      return res.status(500).json({ message: "Username already exists. Please choose a different username." });
+    }
+
     res.status(500).json({ message: "Failed to create user!" });
   }
 };
@@ -35,23 +39,22 @@ export const login = async (req, res) => {
 
   try {
     // CHECK IF THE USER EXISTS
-
     const user = await prisma.user.findUnique({
       where: { username },
     });
 
-    if (!user) return res.status(400).json({ message: "Invalid Credentials! Unknown User" });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid username or password. Please check your credentials and try again." });
+    }
 
     // CHECK IF THE PASSWORD IS CORRECT
-
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordValid)
-      return res.status(400).json({ message: "Invalid Credentials! Please try again !" });
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: "Invalid username or password. Please check your credentials and try again." });
+    }
 
     // GENERATE COOKIE TOKEN AND SEND TO THE USER
-
-    // res.setHeader("Set-Cookie", "test=" + "myValue").json("success")
     const age = 1000 * 60 * 60 * 24 * 7;
 
     const token = jwt.sign(
@@ -73,9 +76,9 @@ export const login = async (req, res) => {
       })
       .status(200)
       .json(userInfo);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Failed to login!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to login. Please try again later." });
   }
 };
 
