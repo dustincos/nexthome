@@ -1,10 +1,10 @@
 import "./listPage.scss";
 import Filter from "../../components/filter/Filter";
-import Card from "../../components/card/Card";
+import List from "../../components/list/List"; // Import List instead of Card
 import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 
-function ListPage() {
+function ListPage({ currentUser }) {
   const data = useLoaderData();
 
   return (
@@ -13,8 +13,8 @@ function ListPage() {
         <Filter />
       </div>
       <div className="lis_font">
-      <h2 className="list h1">Popular</h2>
-      <p className="list p">Available Nearby</p>
+        <h2 className="list h1">Popular</h2>
+        <p className="list p">Available Nearby</p>
       </div>
       <div className="listContainer">
         <div className="wrapper">
@@ -23,11 +23,9 @@ function ListPage() {
               resolve={data.postResponse}
               errorElement={<p>Error loading posts!</p>}
             >
-              {(postResponse) =>
-                postResponse.data.map((post) => (
-                  <Card key={post.id} item={post} />
-                ))
-              }
+              {(postResponse) => (
+                <List posts={postResponse.data} currentUser={currentUser} />
+              )}
             </Await>
           </Suspense>
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./newPostPage.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -10,11 +10,51 @@ function NewPostPage() {
   const [value, setValue] = useState("");
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
+  const [address, setAddress] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const timeoutRef = useRef(null);
+
+  const handleAddressChange = (e) => {
+    const value = e.target.value;
+    setAddress(value);
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
+      if (value.length > 2) {
+        fetchSuggestions(value);
+      } else {
+        setSuggestions([]);
+      }
+    }, 300);
+  };
+
+  const fetchSuggestions = async (query) => {
+    try {
+      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`);
+      const data = await response.json();
+      setSuggestions(data);
+    } catch (err) {
+      console.error("Error fetching suggestions:", err);
+      setError("Failed to fetch address suggestions. Please try again.");
+    }
+  };
+
+  const handleSuggestionSelect = (suggestion) => {
+    setAddress(suggestion.display_name);
+    setLatitude(suggestion.lat);
+    setLongitude(suggestion.lon);
+    setSuggestions([]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData(e.target);
     const inputs = Object.fromEntries(formData);
 
@@ -23,15 +63,15 @@ function NewPostPage() {
         postData: {
           title: inputs.title,
           price: parseInt(inputs.price),
-          address: inputs.address,
+          address: address,
           city: inputs.city,
           bedroom: parseInt(inputs.bedroom),
           bathroom: parseInt(inputs.bathroom),
           kitchen: parseInt(inputs.kitchen),
           type: inputs.type,
           property: inputs.property,
-          latitude: inputs.latitude,
-          longitude: inputs.longitude,
+          latitude: latitude,
+          longitude: longitude,
           images: images,
         },
         postDetail: {
@@ -45,10 +85,12 @@ function NewPostPage() {
           restaurant: parseInt(inputs.restaurant),
         },
       });
-      navigate("/"+res.data.id)
+      navigate("/" + res.data.id);
     } catch (err) {
       console.log(err);
-      setError(error);
+      setError(err.message || "An error occurred while submitting the form.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,7 +110,22 @@ function NewPostPage() {
             </div>
             <div className="item">
               <label htmlFor="address">Address</label>
-              <input id="address" name="address" type="text" />
+              <input
+                id="address"
+                name="address"
+                type="text"
+                value={address}
+                onChange={handleAddressChange}
+              />
+              {suggestions.length > 0 && (
+                <ul className="suggestions">
+                  {suggestions.map((suggestion, index) => (
+                    <li key={index} onClick={() => handleSuggestionSelect(suggestion)}>
+                      {suggestion.display_name}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <div className="item description">
               <label htmlFor="desc">Description</label>
@@ -90,14 +147,9 @@ function NewPostPage() {
               <label htmlFor="kitchen">Kitchen Number</label>
               <input min={1} id="kitchen" name="kitchen" type="number" />
             </div>
-            <div className="item">
-              <label htmlFor="latitude">Latitude</label>
-              <input id="latitude" name="latitude" type="text" />
-            </div>
-            <div className="item">
-              <label htmlFor="longitude">Longitude</label>
-              <input id="longitude" name="longitude" type="text" />
-            </div>
+            {/* Latitude and Longitude fields are now hidden */}
+            <input type="hidden" name="latitude" value={latitude} />
+            <input type="hidden" name="longitude" value={longitude} />
             <div className="item">
               <label htmlFor="type">Type</label>
               <select name="type">
@@ -157,8 +209,10 @@ function NewPostPage() {
               <label htmlFor="restaurant">Restaurant</label>
               <input min={0} id="restaurant" name="restaurant" type="number" />
             </div>
-            <button className="sendButton">Add</button>
-            {error && <span>error</span>}
+            <button className="sendButton" disabled={isLoading}>
+              {isLoading ? "Adding..." : "Add"}
+            </button>
+            {error && <span className="error">{error}</span>}
           </form>
         </div>
       </div>
