@@ -45,9 +45,10 @@
           }
         }
         .sendButton {
+          align-self: flex-end;
           padding: 10px;
           width: 30%;
-          border-radius: 5px;
+          border-radius: 2px;
           border: none;
           background-color: teal;
           color: white;
