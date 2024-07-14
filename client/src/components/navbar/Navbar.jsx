@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./navbar.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 import { AuthContext } from "../../context/AuthContext";
 import { useNotificationStore } from "../../lib/notificationStore";
@@ -12,6 +12,7 @@ function Navbar() {
   const fetch = useNotificationStore((state) => state.fetch);
   const number = useNotificationStore((state) => state.number);
   const navigate = useNavigate();
+  const location = useLocation();
 
   if (currentUser) fetch();
 
@@ -44,10 +45,10 @@ function Navbar() {
           <img src="/logo.png" alt="NextHome Logo" />
           <span>NextHome</span>
         </a>
-        <a href="/">Home</a>
-        <a href="/list">Available</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact us</a>
+        <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+        <Link to="/list" className={location.pathname === '/list' ? 'active' : ''}>Available</Link>
+        <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link>
+        <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact us</Link>
       </div>
       <div className="right">
         {currentUser ? (
@@ -70,10 +71,8 @@ function Navbar() {
           </div>
         ) : (
           <>
-            <a href="/login">Sign in</a>
-            <a href="/register" className="register">
-              Sign up
-            </a>
+            <Link to="/login">Sign in</Link>
+            <Link to="/register" className="register">Sign up</Link>
           </>
         )}
         <div className={`menuIcon ${open ? 'change' : ''}`} onClick={handleMenuIconClick}>
@@ -82,19 +81,17 @@ function Navbar() {
           <div className="bar bar3"></div>
         </div>
         <div className={open ? "menu active" : "menu"}>
-          <a href="/">Home</a>
-          <a href="/list">Available</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact us</a>
+          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
+          <Link to="/list" className={location.pathname === '/list' ? 'active' : ''}>Available</Link>
+          <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>About</Link>
+          <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact us</Link>
           {currentUser ? (
             <div>
             </div>
           ) : (
             <div className="ls-md">
-              <a href="/login">Sign in</a>
-              <a href="/register" className="register">
-                Sign up
-              </a>
+              <Link to="/login">Sign in</Link>
+              <Link to="/register" className="register">Sign up</Link>
             </div>
           )}
         </div>

@@ -99,36 +99,29 @@ function Chat({ chats }) {
         <div className="chatBox">
           <div className="top">
             <div className="user">
-              <img src={chat.receiver.avatar || "noavatar.jpg"} alt="" />
-              {chat.receiver.username}
+              <img src={chat.receiver.avatar || "/noavatar.jpg"} alt="" />
+              <span>{chat.receiver.username}</span>
             </div>
-            <span className="close" onClick={() => setChat(null)}>
+            <div className="close" onClick={() => setChat(null)}>
               X
-            </span>
+            </div>
           </div>
           <div className="center">
-            {chat.messages.map((message) => (
+            {chat.messages.map((m) => (
               <div
-                className="chatMessage"
-                style={{
-                  alignSelf:
-                    message.userId === currentUser.id
-                      ? "flex-end"
-                      : "flex-start",
-                  textAlign:
-                    message.userId === currentUser.id ? "right" : "left",
-                }}
-                key={message.id}
+                key={m.id}
+                className={`chatMessage ${m.sender.id === currentUser.id ? "own" : ""}`}
               >
-                <p>{message.text}</p>
-                <span>{format(message.createdAt)}</span>
+                <span>{m.text}</span>
+                <br />
+                <span>{format(m.createdAt)}</span>
               </div>
             ))}
-            <div ref={messageEndRef}></div>
+            <div ref={messageEndRef} />
           </div>
-          <form onSubmit={handleSubmit} className="bottom">
-            <textarea name="text"></textarea>
-            <button>Send</button>
+          <form className="bottom" onSubmit={handleSubmit}>
+            <textarea name="text" placeholder="Write a message..." required />
+            <button type="submit">Send</button>
           </form>
         </div>
       )}

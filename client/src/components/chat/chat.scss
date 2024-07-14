@@ -1,3 +1,5 @@
+@import "../../responsive.scss";
+
 .chat {
   height: 100%;
   display: flex;
@@ -8,7 +10,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     h1 {
       font-weight: 300;
@@ -63,54 +65,59 @@
           object-fit: cover;
         }
       }
+
       .close {
         cursor: pointer;
       }
     }
+
     .center {
-      height: 350px;
-      overflow: scroll;
+      flex: 1;
       padding: 20px;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 20px;
 
-      .chatMessage{
+      .chatMessage {
         width: 50%;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #f7c14b39;
 
-        &.own{
+        &.own {
           align-self: flex-end;
           text-align: right;
         }
 
-        span{
+        span {
           font-size: 12px;
-          background-color: #f7c14b39;
-          padding: 2px;
-          border-radius: 5px;
         }
       }
     }
+
     .bottom {
       border-top: 2px solid #f7c14b85;
-      height: 60px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      padding: 10px;
 
-      textarea{
-        flex:3;
+      textarea {
+        flex: 1;
         height: 100%;
-        border: none;
-        padding: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
       }
 
-      button{
-        flex:1;
+      button {
+        padding: 10px 20px;
+        margin-left: 10px;
         background-color: #f7c14b85;
-        height: 100%;
         border: none;
         cursor: pointer;
+        border-radius: 5px;
       }
     }
   }

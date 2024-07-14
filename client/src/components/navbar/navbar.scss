@@ -22,7 +22,13 @@ nav {
     }
 
     &:hover {
-      scale: 1.05;
+      transform: scale(1.05); /* Changed from 'scale' to 'transform: scale' */
+    }
+
+    &.active {
+      color: #508d4e;
+      font-weight: bold;
+      transform: scale(1.2);
     }
   }
 
@@ -44,27 +50,23 @@ nav {
       }
 
       span {
-        // @include md {
-        //   display: none;
-        // }
-
         @include sm {
           display: initial;
         }
       }
     }
-    a:not(:first-child){
-      @include md{
+
+    a:not(:first-child) {
+      @include md {
         display: none;
       }
     }
   }
+
   .right {
-    // flex: 2;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    // background-color: #D6EFD8;
     height: 100%;
 
     @include md {
@@ -80,25 +82,24 @@ nav {
       display: flex;
       align-items: center;
       font-weight: bold;
-      position: relative; /* Add this for positioning the dropdown */
-    
+      position: relative;
+
       img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
         object-fit: cover;
         margin-right: 20px;
-        cursor: pointer; /* Add cursor pointer for better UX */
+        cursor: pointer;
       }
-    
+
       span {
         @include sm {
           display: none;
         }
       }
-    
+
       .profile {
-        
         .notification {
           position: absolute;
           top: -8px;
@@ -113,25 +114,25 @@ nav {
           justify-content: center;
         }
       }
-    
+
       .dropdown {
-        display: none; /* Initially hide the dropdown */
+        display: none;
         position: absolute;
-        top: 100%; /* Position it below the user div */
+        top: 100%;
         left: 0;
         background-color: white;
         border: 1px solid #ccc;
         padding: 10px;
         z-index: 1;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add some shadow for better visibility */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
-    
+
       &:hover .dropdown,
       .dropdown.visible {
-        display: block; /* Show the dropdown on hover or when visible class is added */
+        display: block;
       }
     }
-    
+
     .logout {
       padding: 12px 24px;
       background-color: #fece51;
@@ -153,7 +154,7 @@ nav {
       cursor: pointer;
       width: 36px;
       height: 36px;
-    
+
       @include sm {
         display: inline;
       }
@@ -161,7 +162,7 @@ nav {
       @include md {
         display: inline;
       }
-    
+
       .bar {
         width: 100%;
         height: 5px;
@@ -169,25 +170,25 @@ nav {
         margin: 6px 0;
         transition: 0.4s;
       }
-    
+
       &.change .bar {
-        background-color: white; // Change to white
+        background-color: white;
       }
-    
+
       &.change .bar1 {
         transform: rotate(-45deg) translate(-9px, 6px);
       }
-    
+
       &.change .bar2 {
         opacity: 0;
       }
-    
+
       &.change .bar3 {
         transform: rotate(45deg) translate(-8px, -8px);
       }
     }
-    
-    .ls-md{
+
+    .ls-md {
       @include md {
         display: none;
       }
@@ -213,7 +214,6 @@ nav {
       }
 
       @include sm {
-
         display: flex;
 
         a {
@@ -222,7 +222,6 @@ nav {
       }
 
       @include md {
-
         display: flex;
 
         a {

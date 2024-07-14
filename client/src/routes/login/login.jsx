@@ -36,7 +36,7 @@ function Login() {
       });
 
       updateUser(res.data);
-      navigate("/list");
+      navigate("/profile");
     } catch (err) {
       setError(err.response.data.message);
     } finally {

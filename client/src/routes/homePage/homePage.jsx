@@ -35,7 +35,7 @@ function HomePage() {
       <div className="imgContainer">
         <div className="value_orbe"></div>
         <div className="value_img">
-          <img src="/home.jpg" alt="" />
+          <img src="/home2.jpg" alt="" />
         </div>
       </div>
     </div>
