@@ -2,7 +2,6 @@
   "scripts": {
     "start:api": "cd api && npm start",
     "start:client": "cd client && npm run dev",
-    "start:socket": "cd socket && npm start",
     "start:all": "concurrently \"npm run start:api\" \"npm run start:client\" \"npm run start:socket\""
   },
   "dependencies": {

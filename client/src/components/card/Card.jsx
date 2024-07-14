@@ -11,6 +11,7 @@ function Card({ item }) {
   const [error, setError] = useState("");
 
   const canModify = currentUser && currentUser.id === item.userId;
+  const showChatIcon = currentUser && currentUser.id !== item.userId;
 
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this post?")) {
@@ -25,6 +26,13 @@ function Card({ item }) {
         setIsLoading(false);
       }
     }
+  };
+
+  const handleWhatsAppClick = () => {
+    // Construct the WhatsApp message content
+    const message = `Hi! I'm interested in your property:\n\n${item.title}\nAddress: ${item.address}\nPrice: ₹ ${item.price}/- per month\n\nFeatures:\n${item.bedroom} bedroom\n${item.bathroom} bathroom\n${item.kitchen} kitchen\n\nIs it available?`;
+    const whatsappLink = `https://api.whatsapp.com/send?phone=${encodeURIComponent(item.mobile)}&text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
   };
 
   return (
@@ -63,6 +71,11 @@ function Card({ item }) {
             <div className="icon">
               <img src="/chat.png" alt="" />
             </div>
+            {showChatIcon && (
+              <div className="icon" onClick={handleWhatsAppClick}>
+                <img src="/whatsapp.png" alt="" />
+              </div>
+            )}
             {canModify && (
               <div className="icon" onClick={handleDelete}>
                 <img src="/close.png" alt="Delete" />
